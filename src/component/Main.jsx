@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import { useNavigate } from "react-router";
 import Image1 from "../pics/image1.jpg";
 import Image2 from "../pics/image2.jpg";
