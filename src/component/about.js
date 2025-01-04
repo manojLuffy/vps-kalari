@@ -1,6 +1,3 @@
-import { Dialog, DialogPanel } from "@headlessui/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { useState } from "react";
 import Carousel from "./carosel";
 import Image1 from "../pics/image1.jpg";
 import Image2 from "../pics/image2.jpg";
