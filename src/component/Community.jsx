@@ -1,10 +1,21 @@
 import React from "react";
 import Header from "./Common/Header";
 import Footer from "./Common/Footer";
+import { Helmet } from "react-helmet";
 
 const Community = () => {
 	return (
 		<div className="bg-gray-200">
+			<Helmet>
+				<title>Community Impact | VPS Kalari</title>
+				<meta property="og:title" content="Community Impact | VPS Kalari" />
+				<meta
+					property="og:description"
+					content="Explore the community impact initiatives of VPS Kalari, including free swimming classes, scholarships, self-defense classes, film nights, and our no-drug policy."
+				/>
+				<meta property="og:image" content="https://www.vpskalari.com/pics/logo.png" />
+				<meta property="og:url" content="https://www.vpskalari.com/Community" />
+			</Helmet>
 			<Header />
 			<main className="isolate">
 				<div className="relative isolate -z-10">

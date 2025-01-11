@@ -10,6 +10,7 @@ import Moksha from "../pics/Moksha.jpg";
 import Moksha_2 from "../pics/Moksha_2.JPG";
 import Footer from "./Common/Footer";
 import Header from "./Common/Header";
+import { Helmet } from "react-helmet";
 
 const stats = [
 	{ label: "Trained till now", value: "More than 100 students" },
@@ -54,6 +55,16 @@ export default function Main() {
 
 	return (
 		<div className="bg-gray-200">
+			<Helmet>
+				<title>VPS Kalari | Authentic Kalaripayattu School in Kerala</title>
+				<meta property="og:title" content="VPS Kalari | Authentic Kalaripayattu School in Kerala" />
+				<meta
+					property="og:description"
+					content="Learn Kalaripayattu, the ancient martial art, at VPS Kalari. Join our courses taught by Shyju Gurukkal, a 4th-generation expert."
+				/>
+				<meta property="og:image" content="https://www.vpskalari.com/pics/logo.png" />
+				<meta property="og:url" content="https://www.vpskalari.com/" />
+			</Helmet>
 			{/* Header */}
 			<Header />
 			<main className="isolate">

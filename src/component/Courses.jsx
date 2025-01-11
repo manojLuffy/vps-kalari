@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { courseData } from "./CourseData/courseData";
 import Header from "./Common/Header";
 import Footer from "./Common/Footer";
+import { Helmet } from "react-helmet";
 
 const Courses = () => {
 	useEffect(() => {
@@ -9,6 +10,16 @@ const Courses = () => {
 	}, []);
 	return (
 		<div className="bg-gray-200">
+			<Helmet>
+				<title>Courses | VPS Kalari</title>
+				<meta property="og:title" content="VPS Kalari | Authentic Kalaripayattu School in Kerala" />
+				<meta
+					property="og:description"
+					content="Learn Kalaripayattu, the ancient martial art, at VPS Kalari. Join our courses taught by Shyju Gurukkal, a 4th-generation expert."
+				/>
+				<meta property="og:image" content="https://www.vpskalari.com/pics/logo.png" />
+				<meta property="og:url" content="https://www.vpskalari.com/Courses" />
+			</Helmet>
 			<Header />
 			<main className="isolate">
 				<div className="relative isolate -z-10">

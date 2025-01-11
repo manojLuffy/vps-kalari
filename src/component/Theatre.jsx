@@ -1,18 +1,22 @@
-import React, { useState, useEffect, useRef } from "react";
-// import moksha1 from "../assets/moksha/moksha1.jpg"; // Import your Moksha images
-// import moksha2 from "../assets/moksha/moksha2.jpg";
-// ... import other images
 import theatre1 from "../pics/theatre_1.jpg";
 import Header from "./Common/Header";
 import Footer from "./Common/Footer";
 
+import { Helmet } from "react-helmet";
+
 const Theatre = () => {
-	const images = ["werwrg"];
-
-	// ... (scrolling banner logic remains the same) ...
-
 	return (
 		<div className="bg-gray-200">
+			<Helmet>
+				<title>Moksha | Kalaripayattu Theatre Performance at VPS Kalari</title>
+				<meta property="og:title" content="Moksha | Kalaripayattu Theatre at VPS Kalari" />
+				<meta
+					property="og:description"
+					content="Experience 'Moksha,' a breathtaking theatrical performance blending Kalaripayattu and the spirit of Kerala. A tribute to the warriors who preserved the art against all odds."
+				/>
+				<meta property="og:image" content="https://www.vpskalari.com/pics/theatre1.jpg" />
+				<meta property="og:url" content="https://www.vpskalari.com/Theatre" />
+			</Helmet>
 			{/* ... (scrolling banner code remains the same) ...  */}
 			<Header />
 			<main className="isolate">

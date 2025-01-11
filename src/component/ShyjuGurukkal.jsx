@@ -2,10 +2,21 @@ import React from "react";
 import image5 from "../pics/image5.jpg";
 import Header from "./Common/Header";
 import Footer from "./Common/Footer";
+import { Helmet } from "react-helmet";
 
 const ShyjuGurukkal = () => {
 	return (
 		<div className="bg-gray-200">
+			<Helmet>
+				<title>Shyju Gurukkal | Master of Kalaripayattu and Ayurveda Marma Kalari Chikitsa</title>
+				<meta property="og:title" content="Shyju Gurukkal | Master of Kalaripayattu and Ayurveda Marma Kalari Chikitsa" />
+				<meta
+					property="og:description"
+					content="Meet Shyju Gurukkal, a 4th-generation expert in Kalaripayattu and Ayurveda Marma Kalari Chikitsa. Learn about his achievements, vision, and dedication to preserving and spreading the ancient martial art form."
+				/>
+				<meta property="og:image" content="https://www.vpskalari.com/pics/image5.jpg" />
+				<meta property="og:url" content="https://www.vpskalari.com/ShyjuGurukkal" />
+			</Helmet>
 			<Header />
 			<main className="isolate">
 				<div className="relative isolate -z-10">

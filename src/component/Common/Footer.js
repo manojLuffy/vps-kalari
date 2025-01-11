@@ -96,7 +96,7 @@ function Footer() {
 						<div>
 							<h4 className="mb-2 text-lg font-bold">Head Office</h4>
 							<p>
-								VPS Kalari Madhom, Kadavandu,
+								VPS Kalari Madhom, Kadavanadu,
 								<br />
 								Ponnani, Kerala - 679586
 							</p>
