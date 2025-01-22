@@ -15,7 +15,6 @@ import fire from "../pics/fire.webp";
 import Moksha from "../pics/Moksha.webp";
 import Moksha_2 from "../pics/Moksha_2.webp";
 import Moksha_3 from "../pics/Moksha_3.webp";
-import Moksha_4 from "../pics/Moksha_4.jpeg";
 import Madhom_1 from "../pics/Madhom/Madhom_1.webp";
 import Madhom_2 from "../pics/Madhom/Madhom_2.webp";
 import Madhom_3 from "../pics/Madhom/Madhom_3.webp";
