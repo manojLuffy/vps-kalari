@@ -19,7 +19,7 @@
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@400;500&display=swap"); /* Example fonts */
-
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Roboto:wght@400;500&display=swap");
 @layer base {
 	h1,
 	h2,
@@ -30,6 +30,7 @@
 	a {
 		font-family: "Poppins", sans-serif; /* Your chosen heading font */
 		font-weight: 700;
+		color: #dc2626;
 	}
 
 	body {

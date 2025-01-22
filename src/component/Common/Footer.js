@@ -1,6 +1,3 @@
-import React from "react";
-import Location from "../../pics/Location.png";
-
 function Footer() {
 	const footerNavigation = {
 		social: [
@@ -72,7 +69,8 @@ function Footer() {
 	};
 
 	return (
-		<div>
+		<div className="text-white bg-black">
+			<div className="mt-2" id="footer"></div>
 			<div className="mx-[6%] mt-16 border-t border-gray-300"></div>
 			<footer className="px-6 pb-20 mx-auto mt-10 overflow-hidden max-w-7xl sm:mt-12 sm:pb-24 lg:px-8">
 				<div className="container mx-auto">
@@ -106,18 +104,27 @@ function Footer() {
 						<div>
 							<h4 className="mb-2 text-lg font-bold">Branches</h4>
 							<p>
-								<span className="font-bold">Kerala:</span> Vallachira, Kollam, Thrissur, Edappal, Malappuram Town Hall, Varavoor <br />
-								<span className="font-bold">Karnataka:</span> Banaswadi, Whitefield
+								<span className="font-bold">Headquarters:</span> Ponnani, Kerala <br />
+								<span className="font-bold">Branches in Kerala:</span> Mezhathoor, Koottanad | Kavupra, Eruvaprakunnu | Vattamkullam | Panjal,
+								Shornur | Kathakali School, Cheruthiruthi.
+								<br />
+								<span className="font-bold">Branches outside Kerala:</span> Bengaluru, Karnataka | Gwalior, Madhya Pradesh | Nashik, Maharashtra |
+								Ultadanga, Kolkata.
 							</p>
 						</div>
 					</div>
 
 					<div className="flex flex-col items-center justify-between md:flex-row">
 						<div className="w-[100%] md:w-[50%]">
-							<img
-								src={Location}
-								alt="VPS Kalari Location"
-								className="w-full h-auto rounded-lg shadow-md" // Style the image
+							<iframe
+								src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.671028185234!2d75.9366599!3d10.759817000000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba7bb6edfd8bf21%3A0xc8fad5525326af8e!2sVPS%20Kalari!5e0!3m2!1sen!2sin!4v1737279900347"
+								width="100%"
+								height="300"
+								style={{ border: 0 }}
+								allowFullScreen=""
+								loading="lazy"
+								title="VPS Kalari Location"
+								referrerPolicy="no-referrer-when-downgrade"
 							/>
 						</div>
 

@@ -1,5 +1,5 @@
 import React from "react";
-import image5 from "../pics/image5.jpg";
+import image5 from "../pics/image5.webp";
 import Header from "./Common/Header";
 import Footer from "./Common/Footer";
 import { Helmet } from "react-helmet";

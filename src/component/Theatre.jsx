@@ -1,4 +1,4 @@
-import theatre1 from "../pics/theatre_1.jpg";
+import Moksha_3 from "../pics/Moksha_3.webp";
 import Header from "./Common/Header";
 import Footer from "./Common/Footer";
 
@@ -74,8 +74,8 @@ const Theatre = () => {
 					{/* YouTube Video Embed */}
 					<div className="my-24">
 						<img
-							src={theatre1}
-							alt="Shyju Gurukkal"
+							src={Moksha_3}
+							alt="Moksha theatrical performance"
 							className="w-full h-auto transition duration-300 ease-in-out transform shadow-lg hover:scale-105"
 						/>
 					</div>
