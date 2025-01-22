@@ -286,25 +286,15 @@ const LegacySection = () => {
 						<div className="grid grid-cols-2 gap-4">
 							<div className="space-y-4">
 								<motion.div className="relative group" whileHover={{ scale: 1.05 }} onClick={() => handleImageClick(image7)}>
-									<img
-										src={image7}
-										alt="Kalari pose"
-										loading="lazy"
-										className="object-cover w-full rounded-lg shadow-lg cursor-pointer aspect-square"
-									/>
+									<img src={image7} alt="Kalari pose" className="object-cover w-full rounded-lg shadow-lg cursor-pointer aspect-square" />
 								</motion.div>
 								<motion.div className="relative group" whileHover={{ scale: 1.05 }} onClick={() => handleImageClick(fire)}>
-									<img src={fire} alt="fire" loading="lazy" className="object-cover w-full rounded-lg shadow-lg cursor-pointer aspect-video" />
+									<img src={fire} alt="fire" className="object-cover w-full rounded-lg shadow-lg cursor-pointer aspect-video" />
 								</motion.div>
 							</div>
 							<div className="mt-8">
 								<motion.div className="relative group" whileHover={{ scale: 1.05 }} onClick={() => handleImageClick(image4)}>
-									<img
-										src={image4}
-										alt="Manja Thalla"
-										loading="lazy"
-										className="object-cover w-full rounded-lg shadow-lg aspect-[3/4] cursor-pointer"
-									/>
+									<img src={image4} alt="Manja Thalla" className="object-cover w-full rounded-lg shadow-lg aspect-[3/4] cursor-pointer" />
 								</motion.div>
 							</div>
 						</div>
@@ -371,7 +361,7 @@ const StatsSection = () => {
 						whileHover={{ scale: 1.05 }}
 						onClick={() => handleImageClick(Moksha)}>
 						<div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-						<img className="object-cover w-full cursor-pointer h-80" src={Moksha} alt="Main Performance" loading="lazy" />
+						<img className="object-cover w-full cursor-pointer h-80" src={Moksha} alt="Main Performance" />
 					</motion.div>
 
 					{/* Overlapping smaller images */}
@@ -383,7 +373,6 @@ const StatsSection = () => {
 							className="object-cover w-full h-48 transition-all duration-300 ease-in-out rounded-lg shadow-xl cursor-pointer"
 							src={Moksha_2}
 							alt="Performance Detail"
-							loading="lazy"
 						/>
 					</motion.div>
 					<motion.div
@@ -394,7 +383,6 @@ const StatsSection = () => {
 							className="object-cover w-full h-40 transition-all duration-300 ease-in-out rounded-lg shadow-xl cursor-pointer"
 							src={Moksha_3}
 							alt="Performance Detail"
-							loading="lazy"
 						/>
 					</motion.div>
 				</div>
