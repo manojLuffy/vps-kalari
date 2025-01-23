@@ -357,7 +357,7 @@ const StatsSection = () => {
 				<div className="relative w-[90%] self-center">
 					{/* Main large image */}
 					<motion.div
-						className="relative z-10 overflow-hidden rounded-lg shadow-xl cursor-pointer"
+						className="relative overflow-hidden rounded-lg shadow-xl cursor-pointer z-5"
 						whileHover={{ scale: 1.05 }}
 						onClick={() => handleImageClick(Moksha)}>
 						<div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
@@ -366,7 +366,7 @@ const StatsSection = () => {
 
 					{/* Overlapping smaller images */}
 					<motion.div
-						className="absolute top-0 right-0 z-20 w-1/3 -mt-6 -mr-6"
+						className="absolute top-0 right-0 z-10 w-1/3 -mt-6 -mr-6"
 						whileHover={{ scale: 1.05 }}
 						onClick={() => handleImageClick(Moksha_2)}>
 						<img
@@ -376,7 +376,7 @@ const StatsSection = () => {
 						/>
 					</motion.div>
 					<motion.div
-						className="absolute bottom-0 left-0 z-20 w-1/4 -mb-6 -ml-6"
+						className="absolute bottom-0 left-0 z-10 w-1/4 -mb-6 -ml-6"
 						whileHover={{ scale: 1.05 }}
 						onClick={() => handleImageClick(Moksha_3)}>
 						<img
