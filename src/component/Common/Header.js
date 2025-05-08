@@ -15,53 +15,26 @@ const navigation = [
 const Header = () => {
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-	// In Header.js
+	// Improved smooth scroll function
 	const handleScrollToFooter = () => {
 		const footer = document.getElementById("footer");
 		if (footer) {
 			const headerHeight = document.querySelector("header").offsetHeight;
 			const offset = footer.getBoundingClientRect().top + window.scrollY - headerHeight;
 
-			const smoothScroll = () => {
-				const currentScroll = window.scrollY;
-				const distance = offset - currentScroll;
+			window.scrollTo({
+				top: offset,
+				behavior: "smooth",
+			});
 
-				if (Math.abs(distance) < 1) {
-					// If we're close enough, just jump to the target
-					window.scrollTo(0, offset);
-					return;
-				}
-
-				const duration = 1000; // Adjust duration as needed (in milliseconds)
-				const startTime = performance.now();
-
-				const animateScroll = (currentTime) => {
-					const elapsedTime = currentTime - startTime;
-					const scrollProgress = Math.min(elapsedTime / duration, 1); // Ensure progress doesn't exceed 1
-
-					// Use an easing function for smoother animation (e.g., easeInOutCubic)
-					const ease = (t) => (t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1);
-					const newScrollY = currentScroll + distance * ease(scrollProgress);
-
-					window.scrollTo(0, newScrollY);
-
-					if (elapsedTime < duration) {
-						requestAnimationFrame(animateScroll);
-					}
-				};
-
-				requestAnimationFrame(animateScroll);
-			};
-
-			smoothScroll();
-			setMobileMenuOpen(false);
+			setMobileMenuOpen(false); // Close mobile menu if open
 		}
 	};
 
 	return (
 		<header className="fixed top-0 left-0 z-50 w-full bg-black shadow-md">
 			<nav aria-label="Global" className="flex items-center justify-between p-6 mx-auto max-w-7xl lg:px-8">
-				{/* Logo (Takes up minimal space) */}
+				{/* Logo */}
 				<div className="flex lg:flex-initial">
 					<a href="/" className="-m-1.5 p-1.5">
 						<span className="sr-only">VPS Kalari</span>
@@ -69,19 +42,18 @@ const Header = () => {
 					</a>
 				</div>
 
-				{/* Hamburger Icon (Visible on Mobile) */}
+				{/* Hamburger Icon (Mobile) */}
 				<div className="flex lg:hidden">
 					<button
 						type="button"
 						onClick={() => setMobileMenuOpen(true)}
-						className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-white" // Changed text color to white
-					>
+						className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-white">
 						<span className="sr-only">Open main menu</span>
 						<Bars3Icon className="w-6 h-6" aria-hidden="true" />
 					</button>
 				</div>
 
-				{/* Navigation Links (Takes up available space) */}
+				{/* Navigation Links (Desktop) */}
 				<div className="hidden lg:flex lg:flex-1 lg:justify-center lg:gap-x-12">
 					{navigation.map((item) => (
 						<NavLink
@@ -95,7 +67,7 @@ const Header = () => {
 					))}
 				</div>
 
-				{/* Contact Us Icon (Align to the right) */}
+				{/* Contact Us Icon (Desktop) */}
 				<div className="hidden lg:flex lg:items-center lg:justify-end">
 					<button onClick={handleScrollToFooter} className="p-2 text-white transition-colors duration-300 rounded-md hover:text-red-600">
 						<PhoneIcon className="w-6 h-6" />

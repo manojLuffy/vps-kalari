@@ -1,45 +1,33 @@
 import React, { useCallback, useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Carousel = ({ images, className, autoSlideInterval = 5000 }) => {
 	const [currentIndex, setCurrentIndex] = useState(0);
+	const [direction, setDirection] = useState("right");
 	const [touchStart, setTouchStart] = useState(null);
-	const [touchEnd, setTouchEnd] = useState(null);
 
 	const goToPrevious = useCallback(() => {
-		const isFirstSlide = currentIndex === 0;
-		const newIndex = isFirstSlide ? images.length - 1 : currentIndex - 1;
-		setCurrentIndex(newIndex);
-	}, [currentIndex, images.length]);
+		setDirection("left");
+		setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+	}, [images.length]);
 
 	const goToNext = useCallback(() => {
-		const isLastSlide = currentIndex === images.length - 1;
-		const newIndex = isLastSlide ? 0 : currentIndex + 1;
-		setCurrentIndex(newIndex);
-	}, [currentIndex, images.length]);
-
-	const goToSlide = (slideIndex) => {
-		setCurrentIndex(slideIndex);
-	};
+		setDirection("right");
+		setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+	}, [images.length]);
 
 	const handleTouchStart = (e) => {
-		setTouchStart(e.targetTouches[0].clientX);
+		setTouchStart(e.touches[0].clientX);
 	};
 
-	const handleTouchMove = (e) => {
-		setTouchEnd(e.targetTouches[0].clientX);
-	};
+	const handleTouchEnd = (e) => {
+		if (!touchStart) return;
+		const touchEnd = e.changedTouches[0].clientX;
+		const delta = touchEnd - touchStart;
 
-	const handleTouchEnd = () => {
-		if (!touchStart || !touchEnd) return;
-		const distance = touchStart - touchEnd;
-		if (distance > 50) {
-			goToNext();
-		}
-		if (distance < -50) {
-			goToPrevious();
-		}
+		if (delta < -50) goToNext();
+		if (delta > 50) goToPrevious();
 		setTouchStart(null);
-		setTouchEnd(null);
 	};
 
 	useEffect(() => {
@@ -47,55 +35,64 @@ const Carousel = ({ images, className, autoSlideInterval = 5000 }) => {
 		return () => clearInterval(slideInterval);
 	}, [goToNext, autoSlideInterval]);
 
+	const slideVariants = {
+		hiddenRight: { x: "100%", opacity: 0 },
+		hiddenLeft: { x: "-100%", opacity: 0 },
+		visible: {
+			x: "0%",
+			opacity: 1,
+			transition: {
+				type: "spring",
+				stiffness: 100,
+				damping: 20,
+			},
+		},
+		exitRight: {
+			x: "-100%",
+			opacity: 0,
+			transition: { duration: 0.3 },
+		},
+		exitLeft: {
+			x: "100%",
+			opacity: 0,
+			transition: { duration: 0.3 },
+		},
+	};
+
 	return (
-		<div className={`absolute inset-0 w-full h-full ${className}`}>
-			<div className="relative w-full h-full" onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd}>
-				{/* Image */}
-				<img
-					src={images[currentIndex]}
-					alt={`Slide ${currentIndex + 1}`}
-					className="absolute inset-0 object-cover w-full h-full transition-opacity duration-500"
-				/>
+		<div className={`relative w-full h-full overflow-hidden ${className}`}>
+			<div className="relative w-full h-full" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
+				<AnimatePresence initial={false} custom={direction}>
+					<motion.img
+						key={currentIndex}
+						src={images[currentIndex]}
+						alt={`Slide ${currentIndex + 1}`}
+						className="absolute inset-0 object-cover w-full h-full"
+						variants={slideVariants}
+						initial={direction === "right" ? "hiddenRight" : "hiddenLeft"}
+						animate="visible"
+						exit={direction === "right" ? "exitLeft" : "exitRight"}
+					/>
+				</AnimatePresence>
 
-				{/* Navigation Container */}
-				<div className="absolute inset-0">
-					{/* Left Navigation Area */}
-					{/* <div className="absolute inset-y-0 left-0 z-[15] w-[75px] flex items-center justify-start px-2 sm:w-[100px] sm:px-4">
-						<button
-							onClick={goToPrevious}
-							className="p-1 text-lg text-white transition-all rounded-full sm:p-2 sm:text-2xl bg-black/40 hover:bg-black/60 focus:outline-none hover:scale-110"
-							aria-label="Previous slide">
-							❮
-						</button>
-					</div> */}
-
-					{/* Right Navigation Area */}
-					{/* <div className="absolute inset-y-0 right-0 z-[15] w-[75px] flex items-center justify-end px-2 sm:w-[100px] sm:px-4">
-						<button
-							onClick={goToNext}
-							className="p-1 text-lg text-white transition-all rounded-full sm:p-2 sm:text-2xl bg-black/40 hover:bg-black/60 focus:outline-none hover:scale-110"
-							aria-label="Next slide">
-							❯
-						</button>
-					</div> */}
-
-					{/* Indicators */}
-					<div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-[15] flex gap-2 sm:bottom-8">
-						{images.map((_, idx) => (
-							<button
-								key={idx}
-								onClick={(e) => {
-									e.stopPropagation();
-									goToSlide(idx);
-								}}
-								className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all ${
-									idx === currentIndex ? "bg-white w-4 sm:w-6" : "bg-white/70 hover:bg-white"
-								}`}
-								aria-label={`Go to slide ${idx + 1}`}
-							/>
-						))}
-					</div>
+				{/* Progress Indicators */}
+				<div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-[25] flex gap-2 sm:bottom-8">
+					{images.map((_, idx) => (
+						<motion.div
+							key={idx}
+							className={`h-1 sm:h-2 rounded-full ${idx === currentIndex ? "bg-white w-8" : "bg-white/30 w-4"}`}
+							initial={{ width: "1rem" }}
+							animate={{
+								width: idx === currentIndex ? "2rem" : "1rem",
+								backgroundColor: idx === currentIndex ? "rgba(255,255,255,1)" : "rgba(255,255,255,0.3)",
+							}}
+							transition={{ duration: 0.3 }}
+						/>
+					))}
 				</div>
+
+				{/* Gradient Overlay */}
+				<div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
 			</div>
 		</div>
 	);
