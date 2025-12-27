@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm start)",
+      "mcp__ide__getDiagnostics"
+    ]
+  }
+}

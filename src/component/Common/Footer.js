@@ -1,4 +1,10 @@
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import Logo from "../../pics/logo.png";
+
 function Footer() {
+	const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
+
 	const footerNavigation = {
 		social: [
 			{
@@ -19,13 +25,13 @@ function Footer() {
 				icon: (props) => (
 					<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="48" height="48" viewBox="0 0 48 48">
 						<radialGradient id="yOrnnhliCrdS2gy~4tD8ma_Xy10Jcu1L2Su_gr1" cx="19.38" cy="42.035" r="44.899" gradientUnits="userSpaceOnUse">
-							<stop offset="0" stop-color="#fd5"></stop>
-							<stop offset=".328" stop-color="#ff543f"></stop>
-							<stop offset=".348" stop-color="#fc5245"></stop>
-							<stop offset=".504" stop-color="#e64771"></stop>
-							<stop offset=".643" stop-color="#d53e91"></stop>
-							<stop offset=".761" stop-color="#cc39a4"></stop>
-							<stop offset=".841" stop-color="#c837ab"></stop>
+							<stop offset="0" stopColor="#fd5"></stop>
+							<stop offset=".328" stopColor="#ff543f"></stop>
+							<stop offset=".348" stopColor="#fc5245"></stop>
+							<stop offset=".504" stopColor="#e64771"></stop>
+							<stop offset=".643" stopColor="#d53e91"></stop>
+							<stop offset=".761" stopColor="#cc39a4"></stop>
+							<stop offset=".841" stopColor="#c837ab"></stop>
 						</radialGradient>
 						<path
 							fill="url(#yOrnnhliCrdS2gy~4tD8ma_Xy10Jcu1L2Su_gr1)"
@@ -37,8 +43,8 @@ function Footer() {
 							r="29.813"
 							gradientTransform="matrix(1 0 0 .6663 0 1.849)"
 							gradientUnits="userSpaceOnUse">
-							<stop offset="0" stop-color="#4168c9"></stop>
-							<stop offset=".999" stop-color="#4168c9" stop-opacity="0"></stop>
+							<stop offset="0" stopColor="#4168c9"></stop>
+							<stop offset=".999" stopColor="#4168c9" stopOpacity="0"></stop>
 						</radialGradient>
 						<path
 							fill="url(#yOrnnhliCrdS2gy~4tD8mb_Xy10Jcu1L2Su_gr2)"
@@ -68,54 +74,152 @@ function Footer() {
 		],
 	};
 
-	return (
-		<div className="text-white bg-black">
-			<div className="mt-2" id="footer"></div>
-			<div className="mx-[6%] mt-16 border-t border-gray-300"></div>
-			<footer className="px-6 pb-20 mx-auto mt-10 overflow-hidden max-w-7xl sm:mt-12 sm:pb-24 lg:px-8">
-				<div className="container mx-auto">
-					<div className="grid grid-cols-1 gap-8 mb-8 md:grid-cols-2 lg:grid-cols-3">
-						<div>
-							<h4 className="mb-2 text-lg font-bold">Contact Us</h4>
-							<p>
-								<span className="font-bold">Phone:</span>{" "}
-								<a href="tel:+919895297783" className="hover:underline">
-									+919895297783
-								</a>
-								<br />
-								<span className="font-bold">Email:</span>{" "}
-								<a href="mailto:vpskalarikerala@gmail.com" className="hover:underline">
-									vpskalarikerala@gmail.com
-								</a>
-							</p>
-						</div>
+	const containerVariants = {
+		hidden: { opacity: 0 },
+		visible: {
+			opacity: 1,
+			transition: {
+				staggerChildren: 0.1,
+				delayChildren: 0.2,
+			},
+		},
+	};
 
-						{/* Head Office Address */}
-						<div>
-							<h4 className="mb-2 text-lg font-bold">Head Office</h4>
-							<p>
+	const itemVariants = {
+		hidden: { opacity: 0, y: 30 },
+		visible: {
+			opacity: 1,
+			y: 0,
+			transition: { duration: 0.6, ease: "easeOut" },
+		},
+	};
+
+	return (
+		<div className="relative text-white bg-black overflow-hidden" ref={ref}>
+			{/* Background Effects */}
+			<div className="absolute inset-0 pointer-events-none">
+				<div className="absolute top-0 left-1/4 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl" />
+				<div className="absolute bottom-0 right-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl" />
+			</div>
+
+			{/* Scroll target */}
+			<div className="mt-2" id="footer"></div>
+
+			{/* Animated Divider */}
+			<motion.div
+				className="mx-[6%] mt-16 h-px bg-gradient-to-r from-transparent via-orange-500/50 to-transparent"
+				initial={{ scaleX: 0 }}
+				animate={inView ? { scaleX: 1 } : {}}
+				transition={{ duration: 1, ease: "easeOut" }}
+			/>
+
+			<footer className="relative px-6 pb-20 mx-auto mt-10 overflow-hidden max-w-7xl sm:mt-12 sm:pb-24 lg:px-8">
+				<motion.div
+					className="container mx-auto"
+					variants={containerVariants}
+					initial="hidden"
+					animate={inView ? "visible" : "hidden"}>
+
+					{/* Logo Section */}
+					<motion.div
+						className="flex justify-center mb-12"
+						variants={itemVariants}>
+						<motion.img
+							src={Logo}
+							alt="VPS Kalari Logo"
+							className="h-24 w-auto"
+							whileHover={{ scale: 1.05, filter: "drop-shadow(0 0 20px rgba(234, 88, 12, 0.4))" }}
+						/>
+					</motion.div>
+
+					{/* Info Grid */}
+					<div className="grid grid-cols-1 gap-8 mb-12 md:grid-cols-2 lg:grid-cols-3">
+						{/* Contact */}
+						<motion.div
+							variants={itemVariants}
+							className="p-6 rounded-2xl bg-gray-900/30 border border-gray-800/50 backdrop-blur-sm group hover:border-orange-500/30 transition-all duration-300">
+							<motion.h4
+								className="mb-4 text-lg font-bold text-red-500 flex items-center gap-2"
+								whileHover={{ x: 5 }}>
+								<svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+								</svg>
+								Contact Us
+							</motion.h4>
+							<div className="space-y-3 text-gray-300">
+								<motion.p whileHover={{ x: 3 }} className="transition-all duration-200">
+									<span className="font-semibold text-gray-400">Phone:</span>{" "}
+									<a
+										href="tel:+919895297783"
+										className="hover:text-red-400 transition-colors duration-300">
+										+91 98952 97783
+									</a>
+								</motion.p>
+								<motion.p whileHover={{ x: 3 }} className="transition-all duration-200">
+									<span className="font-semibold text-gray-400">Email:</span>{" "}
+									<a
+										href="mailto:vpskalarikerala@gmail.com"
+										className="hover:text-red-400 transition-colors duration-300">
+										vpskalarikerala@gmail.com
+									</a>
+								</motion.p>
+							</div>
+						</motion.div>
+
+						{/* Head Office */}
+						<motion.div
+							variants={itemVariants}
+							className="p-6 rounded-2xl bg-gray-900/30 border border-gray-800/50 backdrop-blur-sm group hover:border-orange-500/30 transition-all duration-300">
+							<motion.h4
+								className="mb-4 text-lg font-bold text-red-500 flex items-center gap-2"
+								whileHover={{ x: 5 }}>
+								<svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+									<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+								</svg>
+								Head Office
+							</motion.h4>
+							<p className="text-gray-300 leading-relaxed">
 								VPS Kalari Madhom, Kadavanadu,
 								<br />
 								Ponnani, Kerala - 679586
 							</p>
-						</div>
+						</motion.div>
 
 						{/* Branches */}
-						<div>
-							<h4 className="mb-2 text-lg font-bold">Branches</h4>
-							<p>
-								<span className="font-bold">Headquarters:</span> Ponnani, Kerala <br />
-								<span className="font-bold">Branches in Kerala:</span> Mezhathoor, Koottanad | Kavupra, Eruvaprakunnu | Vattamkullam | Panjal,
-								Shornur | Kathakali School, Cheruthiruthi.
-								<br />
-								<span className="font-bold">Branches outside Kerala:</span> Bengaluru, Karnataka | Gwalior, Madhya Pradesh | Nashik, Maharashtra |
-								Ultadanga, Kolkata.
-							</p>
-						</div>
+						<motion.div
+							variants={itemVariants}
+							className="p-6 rounded-2xl bg-gray-900/30 border border-gray-800/50 backdrop-blur-sm group hover:border-orange-500/30 transition-all duration-300 md:col-span-2 lg:col-span-1">
+							<motion.h4
+								className="mb-4 text-lg font-bold text-red-500 flex items-center gap-2"
+								whileHover={{ x: 5 }}>
+								<svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+								</svg>
+								Our Branches
+							</motion.h4>
+							<div className="space-y-2 text-gray-300 text-sm">
+								<p>
+									<span className="font-semibold text-red-400/80">Kerala:</span>{" "}
+									<span className="text-gray-400">Mezhathoor, Koottanad | Kavupra | Vattamkullam | Panjal, Shornur | Cheruthiruthi</span>
+								</p>
+								<p>
+									<span className="font-semibold text-red-400/80">Outside Kerala:</span>{" "}
+									<span className="text-gray-400">Bengaluru | Gwalior | Nashik | Kolkata</span>
+								</p>
+							</div>
+						</motion.div>
 					</div>
 
-					<div className="flex flex-col items-center justify-between md:flex-row">
-						<div className="w-[100%] md:w-[50%]">
+					{/* Map and Social Section */}
+					<motion.div
+						className="flex flex-col items-center justify-between gap-8 lg:flex-row"
+						variants={itemVariants}>
+						{/* Map */}
+						<motion.div
+							className="w-full lg:w-[60%] rounded-2xl overflow-hidden border border-gray-800/50 shadow-2xl"
+							whileHover={{ scale: 1.01 }}
+							transition={{ duration: 0.3 }}>
 							<iframe
 								src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.671028185234!2d75.9366599!3d10.759817000000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba7bb6edfd8bf21%3A0xc8fad5525326af8e!2sVPS%20Kalari!5e0!3m2!1sen!2sin!4v1737279900347"
 								width="100%"
@@ -125,20 +229,56 @@ function Footer() {
 								loading="lazy"
 								title="VPS Kalari Location"
 								referrerPolicy="no-referrer-when-downgrade"
+								className="transition-all duration-500"
 							/>
-						</div>
+						</motion.div>
 
-						<div className="flex justify-center mt-12 space-x-10 md:mt-0 md:pr-24">
-							{footerNavigation.social.map((item) => (
-								<a key={item.name} target="_blank" rel="noopener noreferrer" href={item.href} className="text-gray-400 hover:text-gray-500">
-									<span className="sr-only">{item.name}</span>
-									<item.icon aria-hidden="true" className="w-6 h-6" />
-								</a>
-							))}
+						{/* Social Links */}
+						<motion.div
+							className="flex flex-col items-center gap-6"
+							variants={itemVariants}>
+							<p className="text-gray-500 text-sm uppercase tracking-wider">Follow Us</p>
+							<div className="flex justify-center space-x-6">
+								{footerNavigation.social.map((item, index) => (
+									<motion.a
+										key={item.name}
+										target="_blank"
+										rel="noopener noreferrer"
+										href={item.href}
+										className="relative p-3 rounded-full bg-gray-900/50 border border-gray-800/50 hover:border-orange-500/50 transition-all duration-300 group"
+										whileHover={{ scale: 1.1, y: -5 }}
+										whileTap={{ scale: 0.95 }}
+										initial={{ opacity: 0, y: 20 }}
+										animate={inView ? { opacity: 1, y: 0 } : {}}
+										transition={{ delay: 0.5 + index * 0.1 }}>
+										<span className="sr-only">{item.name}</span>
+										<item.icon aria-hidden="true" className="w-6 h-6" />
+										{/* Glow effect */}
+										<div className="absolute inset-0 rounded-full bg-orange-500/0 group-hover:bg-orange-500/15 blur-xl transition-all duration-300" />
+									</motion.a>
+								))}
+							</div>
+						</motion.div>
+					</motion.div>
+
+					{/* Bottom Section */}
+					<motion.div
+						className="mt-16 pt-8 border-t border-gray-800/50"
+						variants={itemVariants}>
+						<div className="flex flex-col items-center justify-between gap-4 md:flex-row">
+							<p className="text-gray-500 text-sm text-center md:text-left">
+								&copy; {new Date().getFullYear()} VPS Kalari. All rights reserved.
+							</p>
+							<p className="text-gray-600 text-xs text-center">
+								Preserving the ancient art of Kalaripayattu since 1999
+							</p>
 						</div>
-					</div>
-				</div>
+					</motion.div>
+				</motion.div>
 			</footer>
+
+			{/* Bottom Gradient */}
+			<div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-orange-500/30 to-transparent" />
 		</div>
 	);
 }
