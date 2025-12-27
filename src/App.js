@@ -7,6 +7,7 @@ import ShyjuGurukkal from "./component/ShyjuGurukkal";
 import Community from "./component/Community";
 import Theatre from "./component/Theatre";
 import Loader from "./component/Common/Loader";
+import WhatsAppButton from "./component/Common/WhatsAppButton";
 
 function App() {
 	const [isLoading, setIsLoading] = useState(false);
@@ -40,6 +41,7 @@ function App() {
 				<Route path="/community" element={<Community />} />
 				<Route path="/theatre" element={<Theatre />} />
 			</Routes>
+			<WhatsAppButton />
 		</div>
 	);
 }
