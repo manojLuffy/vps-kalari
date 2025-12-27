@@ -114,7 +114,7 @@ const ShyjuGurukkal = () => {
 	];
 
 	return (
-		<div className="bg-black min-h-screen">
+		<div className="bg-black min-h-screen overflow-x-hidden">
 			<Helmet>
 				<title>Shyju Gurukkal | Master of Kalaripayattu and Ayurveda Marma Kalari Chikitsa</title>
 				<meta property="og:title" content="Shyju Gurukkal | Master of Kalaripayattu and Ayurveda Marma Kalari Chikitsa" />

@@ -199,12 +199,12 @@ function Footer() {
 								Our Branches
 							</motion.h4>
 							<div className="space-y-2 text-gray-300 text-sm">
-								<p>
-									<span className="font-semibold text-red-400/80">Kerala:</span>{" "}
+								<p className="break-words">
+									<span className="font-semibold text-red-400/80 block sm:inline">Kerala:</span>{" "}
 									<span className="text-gray-400">Mezhathoor, Koottanad | Kavupra | Vattamkullam | Panjal, Shornur | Cheruthiruthi</span>
 								</p>
-								<p>
-									<span className="font-semibold text-red-400/80">Outside Kerala:</span>{" "}
+								<p className="break-words">
+									<span className="font-semibold text-red-400/80 block sm:inline">Outside Kerala:</span>{" "}
 									<span className="text-gray-400">Bengaluru | Gwalior | Nashik | Kolkata</span>
 								</p>
 							</div>

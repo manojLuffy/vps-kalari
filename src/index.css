@@ -587,6 +587,7 @@
 		color: #ea580c;
 	}
 
+	html,
 	body {
 		margin: 0;
 		font-family: "Roboto", sans-serif;
@@ -594,5 +595,12 @@
 		-moz-osx-font-smoothing: grayscale;
 		font-weight: 500;
 		background-color: #0a0a0a;
+		overflow-x: hidden;
+	}
+
+	/* Ensure all text can break words on mobile */
+	p, span, h1, h2, h3, h4, h5, h6 {
+		word-wrap: break-word;
+		overflow-wrap: break-word;
 	}
 }

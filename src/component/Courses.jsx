@@ -203,7 +203,7 @@ const Courses = () => {
 	}, []);
 
 	return (
-		<div className="bg-black min-h-screen">
+		<div className="bg-black min-h-screen overflow-x-hidden">
 			<Helmet>
 				<title>Courses | VPS Kalari</title>
 				<meta property="og:title" content="VPS Kalari | Authentic Kalaripayattu School in Kerala" />

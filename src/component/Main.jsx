@@ -237,27 +237,27 @@ const Hero = () => {
 					transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
 				/>
 
-				{/* Corner Decorations */}
+				{/* Corner Decorations - Hidden on small screens */}
 				<motion.div
-					className="absolute top-24 left-8 w-32 h-32 border-l-2 border-t-2 border-red-600/30"
+					className="hidden sm:block absolute top-24 left-8 w-32 h-32 border-l-2 border-t-2 border-red-600/30"
 					initial={{ opacity: 0, scale: 0.8 }}
 					animate={{ opacity: 1, scale: 1 }}
 					transition={{ delay: 1, duration: 1 }}
 				/>
 				<motion.div
-					className="absolute top-24 right-8 w-32 h-32 border-r-2 border-t-2 border-red-600/30"
+					className="hidden sm:block absolute top-24 right-8 w-32 h-32 border-r-2 border-t-2 border-red-600/30"
 					initial={{ opacity: 0, scale: 0.8 }}
 					animate={{ opacity: 1, scale: 1 }}
 					transition={{ delay: 1.2, duration: 1 }}
 				/>
 				<motion.div
-					className="absolute bottom-32 left-8 w-32 h-32 border-l-2 border-b-2 border-red-600/30"
+					className="hidden sm:block absolute bottom-32 left-8 w-32 h-32 border-l-2 border-b-2 border-red-600/30"
 					initial={{ opacity: 0, scale: 0.8 }}
 					animate={{ opacity: 1, scale: 1 }}
 					transition={{ delay: 1.4, duration: 1 }}
 				/>
 				<motion.div
-					className="absolute bottom-32 right-8 w-32 h-32 border-r-2 border-b-2 border-red-600/30"
+					className="hidden sm:block absolute bottom-32 right-8 w-32 h-32 border-r-2 border-b-2 border-red-600/30"
 					initial={{ opacity: 0, scale: 0.8 }}
 					animate={{ opacity: 1, scale: 1 }}
 					transition={{ delay: 1.6, duration: 1 }}
@@ -374,12 +374,12 @@ const Hero = () => {
 			</motion.div>
 
 			{/* Image Indicators */}
-			<div className="absolute bottom-8 right-8 flex gap-2">
+			<div className="absolute bottom-8 right-4 sm:right-8 flex gap-2">
 				{images.slice(0, 5).map((_, idx) => (
 					<motion.div
 						key={idx}
 						className={`h-1 rounded-full transition-all duration-300 ${
-							idx === currentImage % 5 ? "bg-red-500 w-8" : "bg-white/30 w-2"
+							idx === currentImage % 5 ? "bg-red-500 w-6 sm:w-8" : "bg-white/30 w-2"
 						}`}
 						whileHover={{ scale: 1.2 }}
 					/>
@@ -590,17 +590,17 @@ const LegacySection = () => {
 
 						{/* Lineage Indicator */}
 						<motion.div
-							className="mt-10 flex items-center gap-4 text-sm text-gray-400"
+							className="mt-10 flex flex-wrap items-center justify-center sm:justify-start gap-2 sm:gap-4 text-sm text-gray-400"
 							initial={{ opacity: 0 }}
 							animate={inView ? { opacity: 1 } : {}}
 							transition={{ delay: 0.7 }}>
-							<span>Manja Thalla</span>
-							<div className="h-px w-8 bg-red-600" />
-							<span>Yashoda</span>
-							<div className="h-px w-8 bg-red-600" />
-							<span>Shanmugan Gurukkal</span>
-							<div className="h-px w-8 bg-red-600" />
-							<span className="text-red-400 font-semibold">Shyju Gurukkal</span>
+							<span className="whitespace-nowrap">Manja Thalla</span>
+							<div className="h-px w-4 sm:w-8 bg-red-600" />
+							<span className="whitespace-nowrap">Yashoda</span>
+							<div className="h-px w-4 sm:w-8 bg-red-600" />
+							<span className="whitespace-nowrap">Shanmugan Gurukkal</span>
+							<div className="h-px w-4 sm:w-8 bg-red-600" />
+							<span className="text-red-400 font-semibold whitespace-nowrap">Shyju Gurukkal</span>
 						</motion.div>
 					</motion.div>
 
@@ -777,7 +777,7 @@ const VisionSection = () => {
 
 					{/* Values */}
 					<motion.div
-						className="grid grid-cols-3 gap-8 mt-16"
+						className="grid grid-cols-3 gap-4 sm:gap-8 mt-16"
 						initial={{ opacity: 0, y: 30 }}
 						animate={inView ? { opacity: 1, y: 0 } : {}}
 						transition={{ delay: 0.6, duration: 0.8 }}>
@@ -791,12 +791,12 @@ const VisionSection = () => {
 								className="text-center"
 								whileHover={{ scale: 1.1, y: -5 }}>
 								<motion.div
-									className="text-4xl mb-3"
+									className="text-3xl sm:text-4xl mb-3"
 									animate={{ y: [0, -5, 0] }}
 									transition={{ duration: 2, repeat: Infinity, delay: idx * 0.3 }}>
 									{item.icon}
 								</motion.div>
-								<p className="text-gray-400 text-sm sm:text-base">{item.label}</p>
+								<p className="text-gray-400 text-xs sm:text-base">{item.label}</p>
 							</motion.div>
 						))}
 					</motion.div>
@@ -1186,7 +1186,7 @@ const AnimatedSection = ({ children }) => {
 // Main Component
 export default function Main() {
 	return (
-		<div className="bg-black min-h-screen">
+		<div className="bg-black min-h-screen overflow-x-hidden">
 			<Helmet>
 				<title>VPS Kalari | Authentic Kalaripayattu School in Kerala</title>
 				<meta property="og:title" content="VPS Kalari | Authentic Kalaripayattu School in Kerala" />

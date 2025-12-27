@@ -153,7 +153,7 @@ const Community = () => {
 	];
 
 	return (
-		<div className="bg-black min-h-screen">
+		<div className="bg-black min-h-screen overflow-x-hidden">
 			<Helmet>
 				<title>Community Impact | VPS Kalari</title>
 				<meta property="og:title" content="Community Impact | VPS Kalari" />
